@@ -3,6 +3,7 @@
 #A function to validate a password by four parameters
 PasswordValidator() {
 
+  ##define color var##
   RED="\e[31m"
   GREEN="\e[32m"
   ENDCOLOR="\e[0m"
