@@ -15,7 +15,7 @@ PasswordValidator() {
   Condition3=[0-9]
 
   if [ ${#PASSWORD} -lt 10 ]; then #First checking string len les than 10 return an error
-    echo "Password is too short"
+    echo "${RED}Password is too short${ENDCOLOR}"
     exit 1
   fi
 
