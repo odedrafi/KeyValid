@@ -14,14 +14,15 @@ PasswordValidator() {
   Condition2=[A-Z]
   Condition3=[0-9]
 
-  if [ ${#PASSWORD} -lt 10 ]; then #First checking string len les than 10 return an error
-    echo "${RED}Password is too short${ENDCOLOR}"
+  if [[ ${#PASSWORD} -lt 10 ]]; then #First checking string len les than 10 return an error
+    echo -e "${RED}Password is too short${ENDCOLOR}"
     exit 1
   fi
 
   # going over all the condition permutations inorder to present the wanted error message
 
-  if [[ ! $PASSWORD =~ $Condition1 ]]; then     # if password dosn't answer 1 then chack next
+  if [[ ! $PASSWORD =~ $Condition1 ]]; then # if password dosn't answer 1 then chack next
+    echo "$1"
     if [[ ! $PASSWORD =~ $Condition2 ]]; then   # and password dosn't answer 2 then chack next conditions
       if [[ ! $PASSWORD =~ $Condition3 ]]; then # and password dosn't answer 3 then exit with the propper error
         echo -e "${RED}Password need's to containe "{$Condition1+ $Condition2+ $Condition3}" ${ENDCOLOR}"
@@ -35,7 +36,7 @@ PasswordValidator() {
         echo -e "${RED}Password need's to containe "{$Condition1}"${ENDCOLOR} " # we return the error only 1
         exit 1
       else
-        echo -e "${RED}Password need's to containe "{$Condition1+ $Condition3}"${ENDCOLOR} " # unless 3 is also missing we return 1+3
+        echo -e "${RED}Password need's to containe "{$Condition1+$Condition3}"${ENDCOLOR} " # unless 3 is also missing we return 1+3
         exit 1
       fi
     fi
