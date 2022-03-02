@@ -1,4 +1,6 @@
 #!/usr/bin/bash
+GREEN="\e[32m"
+RED="\e[31m"
 
 #A function to validate a password by four parameters
 PasswordValidator() {
