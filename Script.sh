@@ -3,10 +3,18 @@
 #A function to validate a password by four parameters
 PasswordValidator() {
 
-  PASSWORD="${1}"
+  #PASSWORD="$1"#note form previous version
+  PasswordFile="$1" # getting file from specifide directory
 
-  Condition1=[a...z] # init the condition
-  Condition2=[A...Z]
+  if [ -f $PasswordFile ]; then     #checking if file is empty
+    PASSWORD=$(cat "$PasswordFile") # reading the password into a var. (assuming there is onle one line with a password)
+  else
+    echo "file is empty!"
+    exit 1
+  fi
+
+  Condition1=[a-z] # init the condition
+  Condition2=[A-Z]
   Condition3=[0-9]
 
   if [ ${#PASSWORD} -lt 10 ]; then #First checking string len les than 10 return an error
