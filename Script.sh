@@ -1,17 +1,16 @@
-#!/usr/bin/bash
+#!/bin/bash
+
+RED="\e[31m"
+GREEN="\e[32m"
+ENDCOLOR="\e[0m"
 
 #A function to validate a password by four parameters
 PasswordValidator() {
 
-  RED="\e[31m"
-  GREEN="\e[32m"
-  ENDCOLOR="\e[0m"
-
-  #PASSWORD="$1"#note form previous version
   # getting file from specifide directory
 
   if [ -f "${PasswordFile="$1"}" ]; then #checking if file is empty
-    PASSWORD=$(cat "$PasswordFile")      # reading the password into a var. (assuming there is onle one line with a password)
+    PASSWORD=$(cat "$PasswordFile")      #reading the password into a var. (assuming there is onle one line with a password)
   else
     echo -e "${RED}file is empty!${ENDCOLOR}"
     exit 1
@@ -67,4 +66,18 @@ PasswordValidator() {
   fi
 }
 
-PasswordValidator "$1"
+while getopts ":f:" FLAG; do
+
+  if [[ ! $FLAG == "-f" ]]; then
+
+    filedirectory=$OPTARG
+
+  else
+    echo -e "${RED}Wrong input!!${ENDCOLOR}"
+    exit 1
+
+  fi
+
+done
+
+PasswordValidator "$filedirectory"
