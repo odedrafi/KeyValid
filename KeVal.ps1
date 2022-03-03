@@ -1,17 +1,21 @@
 
 
 
-param ([string]$f,[string]$Arg)#getting param from user and deciding what to do
+[string]$File=$args[0]
+[string]$Arg=$args[1]#getting param from user and deciding what to do
 
 
-if ( $f -ceq "f"){
+
+
+
+if ( $File -ceq "-f"){
 
     [string]$FileDirectory=$Arg
     $password = Get-Content $FileDirectory
 }
 else{
 
- [string]$password=$f#waiting for password from user 
+ [string]$password=$File#waiting for password from user 
 }
 
 
