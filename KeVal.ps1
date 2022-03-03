@@ -1,7 +1,20 @@
 
 
- [string]$password=$args[0]#waiting for password from user 
-#  write-host $key
+
+param ([string]$f,[string]$Arg)#getting param from user and deciding what to do
+
+
+if ( $f -ceq "f"){
+
+    [string]$FileDirectory=$Arg
+    $password = Get-Content $FileDirectory
+}
+else{
+
+ [string]$password=$f#waiting for password from user 
+}
+
+
 
  function PasswordValidator(){
    ##init flags for error massege
