@@ -22,7 +22,7 @@ PasswordValidator() {
   # going over all the condition permutations inorder to present the wanted error message
 
   if [[ ! $PASSWORD =~ $Condition1 ]]; then # if password dosn't answer 1 then chack next
-    echo "$1"
+
     if [[ ! $PASSWORD =~ $Condition2 ]]; then   # and password dosn't answer 2 then chack next conditions
       if [[ ! $PASSWORD =~ $Condition3 ]]; then # and password dosn't answer 3 then exit with the propper error
         echo -e "${RED}Password need's to containe "{$Condition1+ $Condition2+ $Condition3}" ${ENDCOLOR}"
