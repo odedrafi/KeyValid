@@ -1,26 +1,10 @@
 
-
-
-[string]$File=$args[0]
-[string]$Arg=$args[1]#getting param from user and deciding what to do
+ 
 
 
 
 
-
-if ( $File -ceq "-f"){
-
-    [string]$FileDirectory=$Arg
-    $password = Get-Content $FileDirectory
-}
-else{
-
- [string]$password=$File#waiting for password from user 
-}
-
-
-
- function PasswordValidator(){
+function PasswordValidator(){
    ##init flags for error massege
     $ErrorString1=$null
     $ErrorString2=$null
@@ -64,5 +48,35 @@ else{
 
 
 
+[string]$File=$args[0]
+[string]$Arg=$args[1]#getting param from user and deciding what to do
 
-   PasswordValidator($key)
+
+
+
+
+if ( $File -ceq "-f"){
+
+    [string]$FileDirectory=$Arg
+    $password = Get-Content $FileDirectory
+}
+else{
+
+ [string]$password=$File#waiting for password from user 
+}
+
+
+if ( $password.Length -lt 10 ){
+    
+    
+    Write-host "Password must be at least 10 charecters" -ForegroundColor Red
+
+    exit 1
+}
+else{
+
+    PasswordValidator($password)
+}
+
+
+  
